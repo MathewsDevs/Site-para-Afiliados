@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titulo1</title>
+  <style>
+    /* Reset e estilos gerais */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Header corrigido */
+    header {
+      background-color: #ff5722;
+      color: white;
+      padding: 10px 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+      border-radius: 50px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    /* Grid de produtos - 3 colunas */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+    
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-bottom: 1px solid #ddd;
+      border-radius: 8px 8px 0 0;
+      background-color: #f5f5f5;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    .product-card a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      padding: 15px;
+      transition: color 0.3s;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .logo {
+        height: 40px;
+        margin-right: 10px;
+      }
+      
+      header h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Restante do seu CSS */
+    nav {
+      background-color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav button {
+      padding: 8px 16px;
+      border: 1px solid #ff5722;
+      background-color: white;
+      color: #ff5722;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    nav button:hover {
+      background-color: #ff5722;
+      color: white;
+    }
+    
+    .intro-text {
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 30px 0;
+      margin-top: 40px;
+    }
+
+/* FOOTER VIP */
+.footer-vip {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  color: #fff;
+  position: relative;
+  padding-top: 60px;
+  margin-top: 80px;
+}
+
+.footer-wave {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ff5722" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23ff5722" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ff5722"/></svg>');
+  background-size: cover;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.footer-col {
+  padding: 20px;
+}
+
+.footer-brand {
+  text-align: center;
+}
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid #ff5722;
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+}
+
+.footer-slogan {
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #ecf0f1;
+}
+
+.footer-newsletter {
+  display: flex;
+  margin-top: 20px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+.newsletter-btn {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.newsletter-btn:hover {
+  background-color: #e64a19;
+}
+
+.links-column {
+  margin-bottom: 25px;
+}
+
+.links-title {
+  color: #ff5722;
+  font-size: 18px;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.links-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #ff5722;
+}
+
+.footer-link {
+  display: block;
+  color: #ecf0f1;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+  padding: 5px 0;
+}
+
+.footer-link:hover {
+  color: #ff5722;
+  transform: translateX(5px);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-btn:hover {
+  transform: translateY(-5px) scale(1.1);
+}
+
+.instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
+.whatsapp { background-color: #25D366; }
+.tiktok { background-color: #000000; }
+.youtube { background-color: #FF0000; }
+
+.payment-methods {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.payment-icon {
+  height: 25px;
+  filter: grayscale(100%) brightness(150%);
+  transition: all 0.3s;
+}
+
+.payment-icon:hover {
+  filter: none;
+}
+
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+}
+
+.copyright {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #bdc3c7;
+}
+
+.footer-badges {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background-color: rgba(255, 87, 34, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #ffccbc;
+}
+
+/* Dark Mode */
+body.dark .footer-vip {
+  background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+}
+
+body.dark .badge {
+  background-color: rgba(255, 87, 34, 0.3);
+}
+
+
+
+    /* Dark Mode Styles */
+    body.dark {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    body.dark header,
+    body.dark footer {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+
+    body.dark nav {
+      background-color: #1e1e1e;
+    }
+
+    body.dark nav button {
+      background-color: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    body.dark nav button:hover {
+      background-color: #ffffff;
+      color: #1e1e1e;
+    }
+
+    body.dark .product-card {
+      background-color: #2a2a2a;
+      color: #ffffff;
+      border-color: #444;
+    }
+
+    body.dark .product-card a {
+      color: #ffffff;
+    }
+    
+    body.dark .product-card img {
+      background-color: #1e1e1e;
+    }
+    
+    body.dark .intro-text {
+      color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <img src="imagens/logo.png" alt="Logo" class="logo">
+    <h1>Titulo2</h1>
+  </div>
+</header>
+
+<p class="intro-text">
+  Exemplo: Encontre os melhores produtos da Shopee selecionados com carinho. Roupas, eletrônicos, acessórios e muito mais! (Introduçao)
+</p>
+
+<nav>
+  <div class="nav-container">
+    <button onclick="filtrarCategoria('todos')">Todos</button>
+    <button onclick="filtrarCategoria('gamers')">Gamers/Eletronicos</button>
+    <button onclick="filtrarCategoria('casa')">Casa</button>
+    <button onclick="filtrarCategoria('action')">Infantil</button>
+    <button onclick="filtrarCategoria('mulheres')">Mulheres</button>
+    <button onclick="filtrarCategoria('homens')">Homens</button>
+    <button onclick="filtrarCategoria('beleza')">Beleza e Cuidados</button>
+    <button onclick="alternarModo()" id="modo-escuro">🌙 Modo Escuro</button>
+  </div>
+</nav>
+
+<div class="products-grid" id="produtos-container">
+  <!-- Produtos serão inseridos aqui pelo JavaScript -->
+</div>
+
+<footer class="footer-vip">
+  <div class="footer-wave"></div>
+  
+  <div class="footer-content">
+    <!-- Seção Esquerda -->
+    <div class="footer-col footer-brand">
+      <img src="imagens/logo.png" alt="Logo" class="footer-logo">
+      <p class="footer-slogan">Os melhores produtos da Shopee selecionados pra você!</p>
+      <div class="footer-newsletter">
+        <input type="email" placeholder="Seu melhor email" class="newsletter-input">
+        <button class="newsletter-btn">Assinar</button>
+      </div>
+    </div>
+    
+    <!-- Seção Central -->
+    <div class="footer-col footer-links">
+      <div class="links-column">
+        <h3 class="links-title">🛒 Navegue</h3>
+        <a href="#" class="footer-link">Destaques</a>
+        <a href="#" class="footer-link">Novidades</a>
+        <a href="#" class="footer-link">Ofertas</a>
+        <a href="#" class="footer-link">Cupons</a>
+      </div>
+      
+      <div class="links-column">
+        <h3 class="links-title">ℹ️ Informações</h3>
+        <a href="#" class="footer-link">Sobre Nós</a>
+        <a href="#" class="footer-link">Políticas</a>
+        <a href="#" class="footer-link">Trocas</a>
+        <a href="#" class="footer-link">FAQ</a>
+      </div>
+    </div>
+    
+    <!-- Seção Direita -->
+    <div class="footer-col footer-contact">
+      <h3 class="contact-title">📱 Redes Sociais</h3>
+      <div class="social-grid">
+        <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+      </div>
+      
+      <h3 class="contact-title">💳 Pagamento</h3>
+      <div class="payment-methods">
+        <img src="https://logodownload.org/wp-content/uploads/2014/10/visa-logo-1.png" alt="Visa" class="payment-icon">
+        <img src="https://logodownload.org/wp-content/uploads/2014/10/mastercard-logo-3.png" alt="Mastercard" class="payment-icon">
+        <img src="https://logodownload.org/wp-content/uploads/2020/11/pix-logo.png" alt="Pix" class="payment-icon">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Rodapé Inferior -->
+  <div class="footer-bottom">
+    <p class="copyright">© 2025 Favoritos da Shopee - Todos os direitos reservados</p>
+    <div class="footer-badges">
+      <span class="badge">🛡️ Compra Segura</span>
+      <span class="badge">🚚 Envio Rápido</span>
+      <span class="badge">💯 Qualidade Garantida</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dados dos produtos (use as categorias de cada produto Em (nav) div class= nav-container) Depois copie e cole para altomatizar um pouco mais.
+    const produtos = [
+      // Gamers
+      {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "gamers"
+      },
+    
+      // Casa
+     {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "casa"
+      },
+     
+      // Action Figures (Criança)
+      {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "action"
+      },
+      
+      // Mulheres
+      {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "mulheres"
+      },
+     
+	 
+	  // Homens
+      {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "homens"
+      },
+	  
+      // Beleza e Cuidados
+      {
+        nome: "Nome do produto",
+        imagem: "Link da imagem desejada",
+        link: "seu link do produto",
+        categoria: "beleza"
+      },
+  
+    ];
+
+  // Elementos do DOM
+  const container = document.getElementById('produtos-container');
+  const darkModeButton = document.getElementById('modo-escuro');
+
+  // Função para mostrar produtos
+  function mostrarProdutos(lista) {
+    container.innerHTML = '';
+    
+    // Filtra apenas produtos com imagem e link válidos
+    const produtosValidos = lista.filter(produto => 
+      produto.nome && produto.imagem && produto.link && produto.categoria
+    );
+    
+    if (produtosValidos.length === 0) {
+      container.innerHTML = '<p style="grid-column: 1 / -1; text-align:center;">Nenhum produto encontrado nesta categoria</p>';
+      return;
+    }
+    
+    produtosValidos.forEach(produto => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      const img = document.createElement('img');
+      img.src = produto.imagem;
+      img.alt = produto.nome;
+      img.onerror = function() {
+        img.src = 'https://via.placeholder.com/200x200?text=Imagem+Indisponível';
+      };
+
+      const link = document.createElement('a');
+      link.href = produto.link;
+      link.textContent = produto.nome;
+      link.target = '_blank';
+
+      card.appendChild(img);
+      card.appendChild(link);
+      container.appendChild(card);
+    });
+  }
+
+  // Função para filtrar por categoria
+  function filtrarCategoria(categoria) {
+    if (categoria === 'todos') {
+      mostrarProdutos(produtos);
+    } else {
+      const filtrados = produtos.filter(p => p.categoria === categoria);
+      mostrarProdutos(filtrados);
+    }
+  }
+
+  // Função para alternar modo escuro
+  function alternarModo() {
+    document.body.classList.toggle('dark');
+    const estaEscuro = document.body.classList.contains('dark');
+    darkModeButton.textContent = estaEscuro ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+    
+    // Salva preferência
+    localStorage.setItem('modoEscuro', estaEscuro);
+  }
+
+  // Verifica modo ao carregar
+  function carregarModoSalvo() {
+    const modoSalvo = localStorage.getItem('modoEscuro') === 'true';
+    if (modoSalvo) {
+      document.body.classList.add('dark');
+      darkModeButton.textContent = '☀️ Modo Claro';
+    }
+  }
+
+  // Inicialização
+  window.addEventListener('DOMContentLoaded', () => {
+    carregarModoSalvo();
+    mostrarProdutos(produtos);
+  });
+</script>
+
+</body>
+</html>
